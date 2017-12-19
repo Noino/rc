@@ -7,6 +7,7 @@ ln -fv $location/inputrc.bash ~/.inputrc
 ln -fv $location/vimrc.vim ~/.vimrc
 ln -fv $location/vim_help.vim ~/.vim_help
 ln -fv $location/tmux.conf ~/.tmux.conf
+ln -fv $location/tmux.conf.sh ~/.tmux.conf.sh
 
 # Add a local vimrc file
 touch ~/.vimlocal
