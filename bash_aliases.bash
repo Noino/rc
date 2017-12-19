@@ -25,13 +25,15 @@ export PROMPT_COMMAND='history -a'
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-export PS1="\[$(tput bold)\]\[\033[38;5;196m\]\u@\h\$(parse_git_branch):\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\]\w\\$ \[$(tput sgr0)\]"                                                                  
 
-# Start a simple PHP server in current directory
-alias phpserver="php -S localhost:8000"
+BP_TIME="\[\e[35m\]\t\[\e[m\]"
+BP_USR="\[\e[36m\]\u\[\e[m\]"
+BP_HOST="\[\e[32m\]\h\[\e[m\]"
+BP_JOBS="\[\e[1;31m\]\j\[\e[m\]"
+BP_PATH="\[\e[33;1m\]\w\[\e[m\]"
+BP_BRANCH="\[\e[33m\]\$(parse_git_branch)\[\e[m\]"
 
-# Start chrome from terminal a bit easier
-alias chrome="google-chrome"
+export PS1="[${BP_TIME}][${BP_JOBS}] ${BP_USR}@${BP_HOST}:${BP_PATH}${BP_BRANCH}$ "
 
 # Extract any archive by just writing "extract"
 extract () {
@@ -55,30 +57,12 @@ extract () {
    fi
  }
 
-# List self-installed npm packages
-alias nodelist="npm list -g --depth=0"
-
-# Start browser-sync server in current folder
-alias simpleserver="browser-sync start --server \".\" --files \"./**/*\""
-
-# Add 256 colors to tmux
-alias tmux="tmux -2"
-
 # Alias vi to vim
 alias vi="vim"
 
-# Make a shorthand for bash_aliases
-alias editbash="vi ~/.bash_aliases && source ~/.bash_aliases"
-
-# Make moving and copying files safer by making it confirm overwrite
-alias cp="cp -i"
-alias mv="mv -i"
-
-# Shorthand for cd ..
-alias ..="cd .."
-
-# Restart wifi
-alias wifirestart="sudo service network-manager restart"
+# Make moving and copying files default, without any noob interactives 
+alias cp="cp"
+alias mv="mv"
 
 # Alias shorthands
 alias ls="ls --color"
@@ -91,13 +75,36 @@ alias lr="ls -R --color"
 alias calc="bc"
 
 # Tmux aliases
-alias amux="tmux at -t"
+_amux() {
+    if [ -z "$1" ]; then
+        tmuxp load -y test 0
+    else
+        tmuxp load -y ${1}
+    fi
+}
+
+alias amux=_amux
+alias nmux="tmux new -s "
 alias lmux="tmux ls"
-alias nmux="tmux new -s"
 
 # Recursive grep with perl regexes
 alias grip="grep -riPHn"
 alias grp="grep -nHr"
+
+#Find
+_fnd() {
+    if [ -z "$1" ]; then
+        echo "Usage: fnd <regex>";
+        echo "Usage: fnd <path> <regex>";
+    else
+        if [ -z "$2" ]; then
+            find . -type f -regextype posix-egrep -regex ${1}
+        else
+            find ${1} -type f -regextype posix-egrep -regex ${2}
+        fi
+    fi
+}
+alias fnd=_fnd
 
 # Aliases for going up the directory
 alias ..="cd .."
