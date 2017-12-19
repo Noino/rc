@@ -153,7 +153,7 @@ if has ('autocmd') " Remain compatible with earlier versions
 endif " has autocmd
 
 " PC specific vim settings
-source ~/.vimlocal
+source ~/.vimrc.local
 
 
 
