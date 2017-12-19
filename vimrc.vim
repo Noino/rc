@@ -23,7 +23,7 @@ set ignorecase                  " searches are case insensitive by default
 set smartcase                   " unless uppercase letters where included
 set mouse=a                     " enable mouse support
 set ttymouse=xterm2
-set visualbell                  " Stop plinging, start blinking
+"set visualbell                  " Stop plinging, start blinking
 set backspace=indent,eol,start  " allow backspace over everything in insert
 set laststatus=2
 set sw=4			" shiftwidth
