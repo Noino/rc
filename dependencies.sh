@@ -5,24 +5,17 @@ os=${OS,,}
 
 # Install required bash cli tools
 if [ "$os" == "debian" ] || [ "$os" == "ubuntu" ] ; then
-    sudo apt-get update && sudo apt-get -y install curl git vim tmux tree
+    sudo apt-get update && sudo apt-get -y install git vim tmux tree wget realpath
 elif [ "$os" == "centos" ]; then
-    sudo yum check-update && sudo yum install curl git vim tmux tree
+    sudo yum check-update && sudo yum install git vim tmux tree wget realpath
 fi
 
+mkdir -p ~/.vim/autoload ~/.vim/bundle
+
+git submodule update --init --recursive
+
 # Install pathogen package manager for vim
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+wget -nc -P ~/.vim/autoload/ https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
-# Download vim plugins
-cd ~/.vim/bundle
-git clone https://github.com/tpope/vim-sensible.git
-git clone https://github.com/tomasr/molokai
-git clone https://github.com/airblade/vim-gitgutter
-git clone https://github.com/jiangmiao/auto-pairs
-git clone https://github.com/nathanaelkane/vim-indent-guides
-git clone https://github.com/tpope/vim-surround
-git clone https://github.com/jimsei/winresizer
-git clone https://github.com/pangloss/vim-javascript.git
-git clone https://github.com/kana/vim-fakeclip
-
+# Install vim plugins
+for d in vim-plugins/*/; do (ln -fvs $(realpath $d) ~/.vim/bundle/$(basename $d)); done
