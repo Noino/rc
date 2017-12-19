@@ -5,9 +5,9 @@ os=${OS,,}
 
 # Install required bash cli tools
 if [ "$os" == "debian" ] || [ "$os" == "ubuntu" ] ; then
-    sudo apt-get update && sudo apt-get install curl git vim tmux python-pip
+    sudo apt-get update && sudo apt-get install curl git vim tmux
 elif [ "$os" == "centos" ]; then
-    sudo yum check-update && sudo yum install curl git vim tmux python-pip
+    sudo yum check-update && sudo yum install curl git vim tmux
 fi
 
 # Install pathogen package manager for vim
@@ -26,5 +26,3 @@ git clone https://github.com/jimsei/winresizer
 git clone https://github.com/pangloss/vim-javascript.git
 git clone https://github.com/kana/vim-fakeclip
 
-# Install tmuxp
-pip install --user tmuxp

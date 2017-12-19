@@ -84,7 +84,7 @@ alias wifirestart="sudo service network-manager restart"
 alias ls="ls --color"
 alias la="ls -a --color"
 alias l="ls --color"
-alias ll="ls -l --color"
+alias ll="ls -la --color"
 alias lr="ls -R --color"
 
 # Alias for calulation tool
@@ -97,6 +97,7 @@ alias nmux="tmux new -s"
 
 # Recursive grep with perl regexes
 alias grip="grep -riPHn"
+alias grp="grep -nHr"
 
 # Aliases for going up the directory
 alias ..="cd .."
@@ -107,6 +108,3 @@ alias ......="cd ../../../../.."
 
 # Disable ctrl-s to suspend
 stty -ixon
-
-# Alias for current date in folder format
-alias today="date +%Y-%m-%d"

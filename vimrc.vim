@@ -10,24 +10,43 @@
 " Execute pathogen plugins
 execute pathogen#infect()
 
-" Add vim syntax highlighting to vimlocal
+set nocompatible                " use vim settings rather then vi
+"set term=xterm-256color
+
+set showcmd                     "
+set showmode                    " shows message at bottom when in insert, visual and replace modes
+set number                      " show line numbers
+set title                       " show file name in title
+set autoindent                  " automatically indent lines to match previous line indention
+set smartindent                 " smart indenting for code
+set ignorecase                  " searches are case insensitive by default
+set smartcase                   " unless uppercase letters where included
+set mouse=a                     " enable mouse support
+set ttymouse=xterm2
+set visualbell                  " Stop plinging, start blinking
+set backspace=indent,eol,start  " allow backspace over everything in insert
+set laststatus=2
+set sw=4			" shiftwidth
+set ts=4			" tabstop
+set expandtab                   " convert tabs to spaces
+set hlsearch 			" Highlight search
+
+set whichwrap+=<,>,h,l,[,]      " wrap movement with these keys to next/prev line
+                                " also makes delete in normal mode wrap aka delete lines
+
 au BufNewFile,BufRead .vimlocal setlocal ft=vim
+au BufRead,BufNewFile * set wrap linebreak nolist textwidth=0 wrapmargin=0
 
-" Start syntax highlighting
 syntax on
+set hidden
+set ttyfast
 
-" Tab fixes
-set smarttab
-" Make tabs 4 spaces
-set tabstop=4
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
-set expandtab
-" Make vim indent to next tab spot instead of always indenting 4 spaces
-set shiftround
-" Make it possible to indent properly in files that do not have a proper filetype
-set smartindent
+" Set persistent undo
+set undofile
+set undodir=~/.vim/tempfiles
+set undolevels=1000
+set undoreload=10000
+
 
 " Set vim temporary files to home folder
 if !isdirectory($HOME."/.vim/tempfiles")
@@ -51,14 +70,9 @@ let g:molokai_original = 1
 colorscheme molokai
 hi MatchParen      ctermfg=208 ctermbg=233 cterm=bold 
 
-" Add numbers to vim sidebar
-set number
-
-" Set escape from insert mode to jj
-imap jj <Esc>
-
 " Add newlines with enter without going to insert mode
 nmap <C-o> o<Esc>
+nmap <C-> o<Esc>
 
 " Make a buffer file to home folder for copying between vims
 vmap <C-y> :w! ~/.vimbuffer<CR>
@@ -66,27 +80,32 @@ nmap <C-y> :.w! ~/.vimbuffer<CR>
 " Paste from buffer
 map <C-p> :r ~/.vimbuffer<CR>
 
-" Toggle paste mode with F10
-set pastetoggle=<F10>
+" enter insert in paste mode and toggle between nopaste and paste while in insert
+:map <F9> :set paste ^M<insert>
+:imap <F9> <C-O>:set paste^M
+:set pastetoggle=<F9>
 
-" Set line number toggle
-noremap <F9> :set invnumber<CR>:GitGutterToggle<CR>
+" less help file
+:map <F1> :!less ~/.vim_help^M^M
 
-" Traverse one line at a time
-nnoremap <C-j> <C-E>
-nnoremap <C-k> <C-Y>
-vnoremap <C-j> <C-E>
-vnoremap <C-k> <C-Y>
+" hide search highlight
+:map <F3> :nohlsearch^M
 
-" Make search case insensitive and only sensitive when using uppercase letters
-set ignorecase
-set smartcase
+" toggle line numbers
+:map <F4> :call ToggleNumbers()^M
 
-" Set persistent undo
-set undofile
-set undodir=~/.vim/tempfiles
-set undolevels=1000
-set undoreload=10000
+" rotates line numbers; nonumbers -> numbers -> relativenumbers
+function! ToggleNumbers()
+        if &relativenumber == 1
+                set nonu
+                set nornu
+        elseif &number == 1
+                set rnu
+        else
+                set nu
+        endif
+endfunction
+
 
 " Hotkey for resetting syntax highlighting
 noremap <Leader>l <Esc>:syntax sync fromstart<CR>
@@ -96,8 +115,6 @@ let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd ctermbg=237
 hi IndentGuidesEven ctermbg=236
 
-" Highlight search
-set hlsearch
 
 " Set folding to work by indentation
 set foldmethod=indent
@@ -112,23 +129,13 @@ nmap <silent> # :let @/='\<'.expand('<cword>').'\>'<CR>
 " Save current file as sudo if opened without sudo
 cmap w!! w !sudo tee % > /dev/null
 
-" Add mouse support to vim
-set mouse=a
-
-" Add scrolling while in insert mode
-inoremap <C-k> <C-x><C-y>
-inoremap <C-j> <C-x><C-e>
-
 " Gitgutter settings
 set updatetime=250
 let g:gitgutter_max_signs = 600
 
 " Adding splitting to vim
-nnoremap <C-w>% :vsplit<CR>
-nnoremap <C-w>" :split<CR>
-
-" Add hotkey for new tabs
-nnoremap <C-t> :tabnew<CR>
+nnoremap <C-w>- :vsplit<CR>
+nnoremap <C-w>_ :split<CR>
 
 " Run file in interpreter
 map <Leader>rh :! clear && haxe -main % --interp<CR>
@@ -138,5 +145,15 @@ map <Leader>rp :! clear && perl %<CR>
 " Make a breakpoint on underscores
 set iskeyword-=_
 
+if has ('autocmd') " Remain compatible with earlier versions
+ augroup vimrc     " Source vim configuration upon save
+    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+  augroup END
+endif " has autocmd
+
 " PC specific vim settings
 source ~/.vimlocal
+
+
+

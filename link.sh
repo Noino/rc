@@ -5,6 +5,7 @@ location=`dirname $0`
 ln -fv $location/bash_aliases.bash ~/.bash_aliases
 ln -fv $location/inputrc.bash ~/.inputrc
 ln -fv $location/vimrc.vim ~/.vimrc
+ln -fv $location/vim_help.vim ~/.vim_help
 ln -fv $location/tmux.conf ~/.tmux.conf
 
 # Add a local vimrc file
