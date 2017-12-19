@@ -72,7 +72,7 @@ hi MatchParen      ctermfg=208 ctermbg=233 cterm=bold
 
 " Add newlines with enter without going to insert mode
 nmap <C-o> o<Esc>
-nmap <C-> o<Esc>
+" nmap <C-<CR>> o<Esc>
 
 " Make a buffer file to home folder for copying between vims
 vmap <C-y> :w! ~/.vimbuffer<CR>
@@ -81,29 +81,31 @@ nmap <C-y> :.w! ~/.vimbuffer<CR>
 map <C-p> :r ~/.vimbuffer<CR>
 
 " enter insert in paste mode and toggle between nopaste and paste while in insert
-:map <F9> :set paste ^M<insert>
-:imap <F9> <C-O>:set paste^M
+:map <F9> :set paste <CR><insert>
+:imap <F9> <C-O>:set paste<CR>
 :set pastetoggle=<F9>
 
 " less help file
-:map <F1> :!less ~/.vim_help^M^M
+:map <F1> :!less ~/.vim_help<CR><CR>
 
 " hide search highlight
-:map <F3> :nohlsearch^M
+:map <F3> :nohlsearch<CR>
 
 " toggle line numbers
-:map <F4> :call ToggleNumbers()^M
+:map <F4> :call ToggleNumbers()<CR>
 
 " rotates line numbers; nonumbers -> numbers -> relativenumbers
 function! ToggleNumbers()
-        if &relativenumber == 1
-                set nonu
-                set nornu
-        elseif &number == 1
-                set rnu
-        else
-                set nu
-        endif
+    if &relativenumber == 1
+        :GitGutterDisable
+        set nonu
+        set nornu
+    elseif &number == 1
+        set rnu
+    else
+        :GitGutterEnable
+        set nu
+    endif
 endfunction
 
 

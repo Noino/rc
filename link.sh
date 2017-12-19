@@ -1,15 +1,16 @@
 #!/bin/bash
 # Check current folder
-location=`dirname $(realpath $0)`
+wd=`dirname $(realpath $0)`
 # Link files to appropriate locations
-ln -sfv $location/bash_aliases.bash ~/.bash_aliases
-ln -sfv $location/inputrc.bash ~/.inputrc
-ln -sfv $location/vimrc.vim ~/.vimrc
-ln -sfv $location/vim_help.vim ~/.vim_help
-ln -sfv $location/tmux.conf ~/.tmux.conf
-ln -sfv $location/tmux.conf.sh ~/.tmux.conf.sh
+ln -sfv $wd/bash_aliases.bash ~/.bash_aliases
+ln -sfv $wd/inputrc.bash ~/.inputrc
+ln -sfv $wd/vimrc.vim ~/.vimrc
+ln -sfv $wd/vim_help.vim ~/.vim_help
+ln -sfv $wd/tmux.conf ~/.tmux.conf
+ln -sfv $wd/tmux.conf.sh ~/.tmux.conf.sh
 
 touch ~/.vimrc.local
+
 # Check if source .bash_aliases already present in .bashrc and add it there if not
 check=`grep "bash_aliases" ~/.bashrc`
 if [ "$check" ]

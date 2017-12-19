@@ -1,4 +1,7 @@
 #!/bin/bash
+
+wd=`dirname $(realpath $0)`
+
 # Update repositories
 OS=`cat /etc/issue | grep -io "ubuntu\|debian\|centos"`
 os=${OS,,}
@@ -18,4 +21,5 @@ git submodule update --init --recursive
 wget -nc -P ~/.vim/autoload/ https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
 # Install vim plugins
-for d in vim-plugins/*/; do (ln -fvs $(realpath $d) ~/.vim/bundle/$(basename $d)); done
+cd ~/.vim/bundle/
+for d in $wd/vim-plugins/*/; do (ln -fsv ${d%*/} ${d##*/}); done
