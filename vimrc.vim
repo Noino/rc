@@ -69,6 +69,7 @@ map <Leader>> <Plug>GitGutterNextHunk
 let g:molokai_original = 1
 colorscheme molokai
 hi MatchParen      ctermfg=208 ctermbg=233 cterm=bold 
+hi Visual term=reverse cterm=reverse guibg=Grey
 
 " Add newlines with enter without going to insert mode
 nmap <C-o> o<Esc>
