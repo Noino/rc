@@ -30,6 +30,7 @@ set sw=4			" shiftwidth
 set ts=4			" tabstop
 set expandtab                   " convert tabs to spaces
 set hlsearch 			" Highlight search
+set ff=unix             " unix line endings
 
 set whichwrap+=<,>,h,l,[,]      " wrap movement with these keys to next/prev line
                                 " also makes delete in normal mode wrap aka delete lines
