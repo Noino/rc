@@ -1,6 +1,6 @@
                                 =========================
                                 =                       =
-                                =       Vi help         =
+                                =       Vim help        =
                                 =                       =
                                 =========================
 
@@ -25,6 +25,7 @@ Command-mode Commands
 
         :q              -   Quit
         :w              -   Write
+        :w!!            -   sudo write
         :wq             -   Write & Quit
         :q!             -   Force quit
         =               -   Auto-indent
@@ -50,6 +51,7 @@ Command-mode Commands
         Ctrl+v          -   Enter visual block mode (column selection)
         d               -   Cut selected text in -- VISUAL MODE --
         y               -   Copy selceted text in -- VISUAL MODE --
+        Ctrl+y          -   Copy selected text to buffer file
 
         x               -   Cut the character at current cursor position
         dd              -   Cut the current line
@@ -57,7 +59,8 @@ Command-mode Commands
         d$              -   Cut from the current position to the end of the current line
         yy              -   Copy the current line in normal mode
         nyy             -   Copy the next 'n' lines, including current line in normal mode
-        p               -   Paste the content of the buffer
+        p               -   Paste
+        Ctrl+p          -   Paste content of the buffer file 
 
 
         Movement Commands
@@ -80,4 +83,12 @@ Command-mode Commands
         m<char>                 - Set mark at line
         '<char>                 - Go to mark
 
+        
+        PLUGIN MAGIXS
+        =================
 
+        cursor on word:
+        cs + <from> + <to>      - change surround
+             t=htmltag
+        viw                     - select word
+        S + <input>             - surround selection with input
