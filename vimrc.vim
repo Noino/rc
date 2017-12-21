@@ -67,7 +67,7 @@ map <Leader>< <Plug>GitGutterPrevHunk
 map <Leader>> <Plug>GitGutterNextHunk
 
 " colorscheme
-let g:molokai_original = 1
+let g:molokai_original = 0
 colorscheme molokai
 hi MatchParen      ctermfg=208 ctermbg=233 cterm=bold 
 hi Visual term=reverse cterm=reverse guibg=Grey
