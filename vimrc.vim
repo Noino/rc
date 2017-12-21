@@ -48,6 +48,10 @@ set undodir=~/.vim/tempfiles
 set undolevels=1000
 set undoreload=10000
 
+" remap escape sequence for home and end on mingw64 and windows ubuntu subsystem
+map OH <home>
+map OF <end>
+
 
 " Set vim temporary files to home folder
 if !isdirectory($HOME."/.vim/tempfiles")
