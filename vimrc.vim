@@ -138,8 +138,8 @@ set updatetime=250
 let g:gitgutter_max_signs = 600
 
 " Adding splitting to vim
-nnoremap <C-w>- :vsplit<CR>
-nnoremap <C-w>_ :split<CR>
+nnoremap <C-w>_ :vsplit<CR>
+nnoremap <C-w>- :split<CR>
 
 " Run file in interpreter
 map <Leader>rh :! clear && haxe -main % --interp<CR>
