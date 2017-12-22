@@ -37,7 +37,7 @@ Options:
     -S              Dont sudo (when not rooted already)
     -p  pkgmgr      define package manager instead of relying crappy autodetection
     -e              Export mode, download what we can and package it all up.
-                        Ignores dependancies, since we cant really know what
+                        Ignores dependencies, since we cant really know what
                         your target system is like.
 EOF
 exit 0
@@ -80,11 +80,11 @@ done
 # check required commands
 command -v git >/dev/null 2>&1 || { echo >&2 "git is required, but its not installed. Try running with -d"; exit 1;  }
 
+# download submodules
+git submodule update --init --recursive
+
+# no export mode
 if [ -z ${ex_mode+x} ]; then
-
-    # download submodules
-    git submodule update --init --recursive
-
     # make dirs'n'files
     mkdir -p ~/.vim/autoload ~/.vim/bundle
     touch ~/.vimrc.local
@@ -144,9 +144,8 @@ if [ -z ${ex_mode+x} ]; then
 
     echo "System files updated!";
 
+# export mode
 else
-    echo ""
-    
     if [ -f "rc.run" ]; then 
         rm -f rc.run 
     fi
