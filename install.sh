@@ -146,15 +146,17 @@ if [ -z ${ex_mode+x} ]; then
 
 # export mode
 else
-    if [ -f "rc.run" ]; then 
-        rm -f rc.run 
-    fi
-    if [ ! -x "makeself/makeself.sh" ]; then
-        git clone https://github.com/megastep/makeself
-    fi
+
+    [ -f "rc.run" ] && rm -f rc.run 
+    
+    [ -w "/tmp" ] && { msd="/tmp"; } || { msd=$wd };
+
+    [ ! -x "$msd/makeself/makeself.sh" ] && {
+        git clone https://github.com/megastep/makeself $msd/makeself/;
+    } || { cd $msd/makeself; git pull; cd $wd; };
 
     echo "Exporting to rc.run..."
-    makeself/makeself.sh --notemp . rc.run "Basic bash settings and programs" echo "Extraction complete! you may now install by running install.sh"
+    $msd/makeself/makeself.sh --notemp . rc.run "Basic bash settings and programs" echo "Extraction complete! you may now install by running install.sh"
 
     echo "Export complete!"
 
