@@ -52,6 +52,9 @@ set undoreload=10000
 map OH <home>
 map OF <end>
 
+" unmap recording and ex mode
+:map q <NOP>
+:map Q <NOP>
 
 " Set vim temporary files to home folder
 if !isdirectory($HOME."/.vim/tempfiles")
