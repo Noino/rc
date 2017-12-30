@@ -31,3 +31,6 @@
 [submodule "vim-plugins/vim-polyglot"]
 	path = vim-plugins/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot
+[submodule "vim-plugins/vim-repeat"]
+	path = vim-plugins/vim-repeat
+	url = https://github.com/tpope/vim-repeat
