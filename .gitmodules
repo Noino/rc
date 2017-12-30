@@ -19,9 +19,6 @@
 [submodule "vim-plugins/winresizer"]
 	path = vim-plugins/winresizer
 	url = https://github.com/jimsei/winresizer
-[submodule "vim-plugins/vim-javascript"]
-	path = vim-plugins/vim-javascript
-	url = https://github.com/pangloss/vim-javascript
 [submodule "vim-plugins/vim-fakeclip"]
 	path = vim-plugins/vim-fakeclip
 	url = https://github.com/kana/vim-fakeclip
@@ -31,3 +28,6 @@
 [submodule "vim-plugins/vim-fugitive"]
 	path = vim-plugins/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vim-plugins/vim-polyglot"]
+	path = vim-plugins/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
