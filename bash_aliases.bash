@@ -107,11 +107,16 @@ _fnd() {
 alias fnd=_fnd
 
 # Aliases for going up the directory
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
+
+repeat() { printf "$1"'%.s' $(eval "echo {1.."$(($2))"}");  }
+
+for i in {1..20}; do
+    a=$(repeat '.' $i)
+    d=$(repeat '../' $i)
+    
+    alias .$a="cd ${d}"
+    alias .$i="cd ${d}"
+done
 
 # Disable ctrl-s to suspend
 stty -ixon
