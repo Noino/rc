@@ -118,5 +118,24 @@ for i in {1..20}; do
     alias .$i="cd ${d}"
 done
 
+# cdd allows you to cd to the directory of the given file or directory
+# Use bash built in completion for cd to allow for filenames to be used
+function cdd() {
+    if [[ $# -eq 0 ]]; then
+        builtin cd
+    elif [[ -d "$*" ]]; then
+        builtin cd "$*"
+    elif [[ -f "$*" ]]; then
+        local d=$(dirname "$*")
+        local f=$(basename "$*")
+        builtin cd "$d"
+        $EDITOR "$f"
+    else
+        builtin cd "$*"
+    fi
+}
+alias cd="cdd"
+complete -r cd
+
 # Disable ctrl-s to suspend
 stty -ixon
