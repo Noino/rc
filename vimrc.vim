@@ -84,10 +84,12 @@ nmap <C-o> o<Esc>
 " nmap <C-<CR>> o<Esc>
 
 " Make a buffer file to home folder for copying between vims
-vmap <C-y> :w! ~/.vimbuffer<CR>
-nmap <C-y> :.w! ~/.vimbuffer<CR>
+vmap <C-y> y:new ~/.vimbuffer<CR>VGp:w<CR>:bdelete!<CR>
+nmap <C-y> :.w! ~/.vimbuffer<CR> 
 " Paste from buffer
 map <C-p> :r ~/.vimbuffer<CR>
+imap <C-p> <C-o>:let pastemode = &paste<CR><C-o>:set paste<CR><CR><up><C-o>:r ~/.vimbuffer<CR><bs><end><del><C-o>:let &paste = pastemode<CR>
+vmap <C-p> <del><esc>i<C-p><esc>
 
 " enter insert in paste mode and toggle between nopaste and paste while in insert
 :map <F9> :set paste <CR><insert>
@@ -163,8 +165,8 @@ if has ('autocmd') " Remain compatible with earlier versions
   augroup END
 endif " has autocmd
 
+" autocmd vimenter * NERDTree
+
 " PC specific vim settings
 source ~/.vimrc.local
-
-
 
