@@ -89,7 +89,7 @@ nmap <C-y> :.w! ~/.vimbuffer<CR>
 " Paste from buffer
 map <C-p> :r ~/.vimbuffer<CR>
 imap <C-p> <C-o>:let pastemode = &paste<CR><C-o>:set paste<CR><CR><up><C-o>:r ~/.vimbuffer<CR><bs><end><del><C-o>:let &paste = pastemode<CR>
-vmap <C-p> <del><esc>i<C-p><esc>
+vmap <C-p> c<C-p><esc>
 
 " enter insert in paste mode and toggle between nopaste and paste while in insert
 :map <F9> :set paste <CR><insert>
