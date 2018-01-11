@@ -84,8 +84,9 @@ nmap <C-o> o<Esc>
 " nmap <C-<CR>> o<Esc>
 
 " Make a buffer file to home folder for copying between vims
-vmap <C-y> y:new ~/.vimbuffer<CR>VGp:w<CR>:bdelete!<CR>
+vmap <C-y> "ny:new ~/.vimbuffer<CR>VG"nP:w<CR>:bdelete!<CR>:let @"=@0<CR>
 nmap <C-y> :.w! ~/.vimbuffer<CR> 
+
 " Paste from buffer
 map <C-p> :r ~/.vimbuffer<CR>
 imap <C-p> <C-o>:let pastemode = &paste<CR><C-o>:set paste<CR><CR><up><C-o>:r ~/.vimbuffer<CR><bs><end><del><C-o>:let &paste = pastemode<CR>
