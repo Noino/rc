@@ -76,11 +76,7 @@ alias calc="bc"
 
 # Tmux aliases
 _amux() {
-    if [ -z "$1" ]; then
-        tmuxp load -y test 0
-    else
-        tmuxp load -y ${1}
-    fi
+    tmux at -t ${1:-0}
 }
 
 alias amux=_amux
