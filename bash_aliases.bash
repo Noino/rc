@@ -26,10 +26,15 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+if [ "$UID" = 0 ]; then 
+    BP_USR="\[\e[1;31m\]\u\[\e[1;36m\]"; 
+else
+    BP_USR="\[\e[36m\]\u\[\e[m\]"; 
+fi
+
+BP_JOBS="\[\e[1;31m\]\j\[\e[m\]"; 
 BP_TIME="\[\e[35m\]\t\[\e[m\]"
-BP_USR="\[\e[36m\]\u\[\e[m\]"
 BP_HOST="\[\e[32m\]\h\[\e[m\]"
-BP_JOBS="\[\e[1;31m\]\j\[\e[m\]"
 BP_PATH="\[\e[33;1m\]\w\[\e[m\]"
 BP_BRANCH="\[\e[33m\]\$(parse_git_branch)\[\e[m\]"
 
