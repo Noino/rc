@@ -83,9 +83,11 @@ alias calc="bc"
 _amux() {
     tmux at -t ${1:-0}
 }
-
+_nmux() {
+    tmux new -s ${1:-0}
+}
 alias amux=_amux
-alias nmux="tmux new -s "
+alias nmux=_nmux
 alias lmux="tmux ls"
 
 # Recursive grep with perl regexes
