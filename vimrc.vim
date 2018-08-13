@@ -209,6 +209,9 @@ if !hasmapto("<Plug>VLToggle")
 endif
 let &cpo = s:save_cpo | unlet s:save_cpo
 
+" Make vim show full file path at the bottom
+set statusline+=%F
+
 " PC specific vim settings
 source ~/.vimrc.local
 
