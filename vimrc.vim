@@ -31,6 +31,7 @@ set ts=4			" tabstop
 set expandtab                   " convert tabs to spaces
 set hlsearch 			" Highlight search
 set ff=unix             " unix line endings
+set re=1                " old regex engine is faster?
 
 set whichwrap+=<,>,h,l,[,]      " wrap movement with these keys to next/prev line
                                 " also makes delete in normal mode wrap aka delete lines
