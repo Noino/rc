@@ -88,7 +88,7 @@ nmap <C-o> o<Esc>
 vmap <C-y> "ny:new ~/.vimbuffer<CR>VG"nP:w<CR>:bdelete!<CR>:let @"=@0<CR>
 vmap <C-d> "nd:new ~/.vimbuffer<CR>VG"nP:w<CR>:bdelete!<CR>:let @"=@0<CR>
 nmap <C-y> :.w! ~/.vimbuffer<CR> 
-nmap <C-d> :.w! ~/.vimbuffer<CR>:let @n=@"<CR>dd:let @"=@n
+nmap <C-d> :.w! ~/.vimbuffer<CR>:let @n=@"<CR>dd:let @"=@n<CR>
 
 " Paste from buffer
 map <C-p> :r ~/.vimbuffer<CR>
@@ -97,6 +97,10 @@ vmap <C-p> c<C-p><esc>
 
 " Dont replace clipboard content when pasting over a selection
 xnoremap p pgvy
+
+" delete button does not replace default registry
+nnoremap <del> "_x
+vnoremap <del> "_x
 
 " enter insert in paste mode and toggle between nopaste and paste while in insert
 :map <F9> :set paste <CR><insert>
