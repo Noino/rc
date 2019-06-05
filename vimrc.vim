@@ -77,7 +77,7 @@ map <Leader>> <Plug>GitGutterNextHunk
 " colorscheme
 let g:molokai_original = 0
 colorscheme molokai
-"hi MatchParen      ctermfg=208 ctermbg=233 cterm=bold 
+"hi MatchParen      ctermfg=208 ctermbg=233 cterm=bold
 hi Visual term=reverse cterm=reverse guibg=Grey
 
 " Add newlines with enter without going to insert mode
@@ -87,7 +87,7 @@ nmap <C-o> o<Esc>
 " Make a buffer file to home folder for copying between vims
 vmap <C-y> "ny:new ~/.vimbuffer<CR>VG"nP:w<CR>:bdelete!<CR>:let @"=@0<CR>
 vmap <C-d> "nd:new ~/.vimbuffer<CR>VG"nP:w<CR>:bdelete!<CR>:let @"=@0<CR>
-nmap <C-y> :.w! ~/.vimbuffer<CR> 
+nmap <C-y> :.w! ~/.vimbuffer<CR>
 nmap <C-d> :.w! ~/.vimbuffer<CR>:let @n=@"<CR>dd:let @"=@n<CR>
 
 " Paste from buffer
@@ -115,6 +115,15 @@ vnoremap <del> "_x
 
 " toggle line numbers
 :map <F4> :call ToggleNumbers()<CR>
+
+" Fix for gitgutter realtime processing error
+set shell=/bin/bash
+
+" Remove all trailing whitespace
+nnoremap <Leader>t :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" Disable modeline for its security issues
+set nomodeline
 
 " rotates line numbers; nonumbers -> numbers -> relativenumbers
 function! ToggleNumbers()
