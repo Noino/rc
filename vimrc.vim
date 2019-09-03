@@ -175,8 +175,6 @@ map <Leader>rh :! clear && haxe -main % --interp<CR>
 map <Leader>rj :! clear && node %<CR>
 map <Leader>rp :! clear && perl %<CR>
 
-" Make a breakpoint on underscores
-set iskeyword-=_
 
 if has ('autocmd') " Remain compatible with earlier versions
  augroup vimrc     " Source vim configuration upon save
