@@ -1,5 +1,5 @@
 # Add colors to linux terminal
-TERM="screen-256color"
+TERM="xterm-256color"
 
 # Make vim the default text editor
 EDITOR="vim"
